@@ -1,0 +1,180 @@
+/* Thème clair (par défaut) : le blanc du papier */
+:root,
+:root[data-theme="clair"] {
+  --fond: #f4f2ed;
+  --fond-centre: #ffffff;
+  --texte: #24211d;       /* contraste 14,3:1 sur le fond */
+  --texte-doux: #5c574f;  /* contraste 6,4:1 */
+  --bord: #cfcac0;
+  --panneau: rgba(255, 255, 255, .92);
+  --accent: #6b5a2e;      /* touches clavier dans l'aide */
+  --focus: #1f5fbf;
+  color-scheme: light;
+}
+
+/* Thème sombre : la nuit, la lumière ressort */
+:root[data-theme="sombre"] {
+  --fond: #0a0a0b;
+  --fond-centre: #141312;
+  --texte: #ece6da;       /* contraste 14,9:1 sur le fond le plus clair */
+  --texte-doux: #b5aea2;  /* contraste 8,4:1 */
+  --bord: #3a3732;
+  --panneau: rgba(20, 19, 18, .9);
+  --accent: #e9dcc0;
+  --focus: #9cc2ff;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at 50% 55%, var(--fond-centre) 0%, var(--fond) 70%);
+  transition: background-color .6s ease;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Bouton lune / soleil ---------- */
+.bouton-theme {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.75rem;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--bord);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texte);
+  cursor: pointer;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+
+.bouton-theme:hover { border-color: var(--texte-doux); }
+
+.bouton-theme:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.bouton-theme svg { grid-area: 1 / 1; }
+.icone-soleil { display: none; }
+:root[data-theme="sombre"] .icone-soleil { display: block; }
+:root[data-theme="sombre"] .icone-lune { display: none; }
+
+/* ---------- Textes ---------- */
+.cartel {
+  position: absolute;
+  left: 2rem;
+  bottom: 1.75rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  letter-spacing: .04em;
+}
+
+.titre { font-size: 1rem; }
+.sous-titre { font-size: .82rem; color: var(--texte-doux); }
+
+.coin-bas {
+  position: absolute;
+  right: 2rem;
+  bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .5rem;
+}
+
+.etat {
+  margin: 0;
+  font-size: .82rem;
+  color: var(--texte-doux);
+  letter-spacing: .04em;
+}
+
+.etat:empty { display: none; }
+
+/* ---------- Compteur ---------- */
+.compteur {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.compteur[hidden] { display: none; }
+
+.compteur-texte {
+  margin: 0;
+  font-size: .82rem;
+  color: var(--texte-doux);
+  letter-spacing: .04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.compteur-fermer {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texte-doux);
+  cursor: pointer;
+}
+
+.compteur-fermer:hover {
+  border-color: var(--bord);
+  color: var(--texte);
+}
+
+.compteur-fermer:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.aide {
+  position: absolute;
+  top: 5rem;
+  right: 1.75rem;
+  padding: 1rem 1.25rem;
+  font-size: .78rem;
+  line-height: 1.4;
+  background: var(--panneau);
+  border: 1px solid var(--bord);
+}
+
+.aide p { margin: .25rem 0; }
+.aide .graine { color: var(--texte-doux); margin-top: .6rem; }
+
+kbd {
+  display: inline-block;
+  min-width: 4.2em;
+  font-family: inherit;
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main, .bouton-theme { transition: none; }
+}

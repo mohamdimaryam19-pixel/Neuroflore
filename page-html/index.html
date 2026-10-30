@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr" data-theme="clair">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ce qui nous relie ne fane pas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <canvas id="oeuvre" role="img"
+      aria-label="Bouquet de fleurs dessiné au crayon, dont les tiges ramifiées évoquent des neurones. Des impulsions de lumière colorée montent le long des tiges. Sans lumière, chaque fleur fane : elle perd sa couleur, sa tête s'incline et tombe doucement, elle perd des pétales. Quand une impulsion l'atteint, elle renaît, reprend sa couleur et se redresse. Chaque impulsion laisse sur les tiges une traînée colorée qui s'efface lentement. Quand le bouquet est bien nourri, de nouvelles tiges poussent et se ramifient, et des boutons y éclosent puis grandissent jusqu'à devenir des neurones."></canvas>
+
+    <button class="bouton-theme" id="bouton-theme" type="button" aria-label="Passer au thème sombre">
+      <!-- lune : affichée en thème clair, pour passer en sombre -->
+      <svg class="icone-lune" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      <!-- soleil : affiché en thème sombre, pour revenir en clair -->
+      <svg class="icone-soleil" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <p class="cartel" id="cartel">
+      <span class="titre">Ce qui nous relie ne fane pas</span>
+      <span class="sous-titre">Dessin au crayon, système génératif</span>
+    </p>
+
+    <div class="coin-bas">
+      <p class="etat" id="etat" aria-live="polite"></p>
+      <div class="compteur" id="compteur">
+        <p class="compteur-texte" id="compteur-texte"></p>
+        <button class="compteur-fermer" id="compteur-fermer" type="button" aria-label="Masquer le compteur" title="Masquer (touche C pour le réafficher)">
+          <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false">
+            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <aside class="aide" id="aide" hidden>
+      <p><kbd>Espace</kbd> couper / rétablir les connexions</p>
+      <p><kbd>R</kbd> nouvelle graine (autre déroulé)</p>
+      <p><kbd>T</kbd> afficher le réseau (clic = coordonnées)</p>
+      <p><kbd>C</kbd> afficher / masquer le compteur</p>
+      <p><kbd>H</kbd> afficher / masquer cette aide</p>
+      <p class="graine" id="graine"></p>
+    </aside>
+  </main>
+
+  <!-- reseau.js est généré par chemins.py ; il définit window.RESEAU -->
+  <script src="reseau.js"></script>
+  <!-- tetes.js est généré par separer_fleurs.py ; il définit window.TETES -->
+  <script src="tetes.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
